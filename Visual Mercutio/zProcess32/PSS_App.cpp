@@ -440,7 +440,7 @@ CDocument* PSS_App::OpenWorkspaceFile(LPCSTR pFileName)
     // set the new workspace file name
     m_WorkspaceFileName = pFileName;
 
-    // notify observers about the workspace initialisation
+    // notify observers about the workspace initialization
     PSS_WorkspaceObserverMsg msg(UM_INITWORKSPACE, pEnv);
     NotifyAllObservers(&msg);
 
@@ -1049,7 +1049,7 @@ void PSS_App::OnFileOpenModel()
                           OFN_HIDEREADONLY | OFN_FILEMUSTEXIST,
                           TRUE,
                           pModelDocTmpl))
-        // open cancelled
+        // open canceled
         return;
 
     CWaitCursor cursor;

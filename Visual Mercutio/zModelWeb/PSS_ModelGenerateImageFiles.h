@@ -166,21 +166,21 @@ class AFX_EXT_CLASS PSS_ModelGenerateImageFiles : public PSS_ModelNavigation,
         *@param refFileName - reference file name
         *@return file name and path
         */
-        CString BuildFileNameAndPath(const CString& fileName, const CString& refFileName);
+        CString BuildFileNameAndPath(const CString& fileName, const CString& refFileName) const;
 
         /**
         * Replaces all the backslash found in a string by a slash
         *@param fileName - file name in which backslash should be replaced
         *@return replaced file name
         */
-        CString ReplaceBackSlash(const CString& fileName);
+        CString ReplaceBackSlash(const CString& fileName) const;
 
         /**
         * Replaces all the CRLF and tab chars found in a string by space
         *@param str - file name in which special chars should be replaced
         *@return replaced file name
         */
-        CString ReplaceSpecialCharInString(const CString& str);
+        CString ReplaceSpecialCharInString(const CString& str) const;
 
         /**
         * Parses the model name

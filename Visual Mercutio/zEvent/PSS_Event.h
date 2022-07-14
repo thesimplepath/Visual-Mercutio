@@ -140,7 +140,7 @@ class AFX_EXT_CLASS PSS_Event : public CObject
         *@param value - the date and time value to parse
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL ParseDateTime(COleDateTime& dateTime, const CString& value);
+        virtual BOOL ParseDateTime(COleDateTime& dateTime, const CString& value) const;
 
     protected:
         PSS_Date m_TimeStamp;

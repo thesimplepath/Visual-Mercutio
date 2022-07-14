@@ -57,7 +57,7 @@ class AFX_EXT_CLASS PSS_Network
         *@param interactive - if true, the connection will be interactive
         *@return true on success, otherwise false
         */
-        virtual bool OpenConnection(const CString& path, HWND hWndOwner = NULL, bool temporarily = true, bool interactive = true);
+        virtual bool OpenConnection(const CString& path, HWND hWndOwner = NULL, bool temporarily = true, bool interactive = true) const;
 
         /**
         * Removes an existing connection
@@ -67,21 +67,21 @@ class AFX_EXT_CLASS PSS_Network
         *                    are broken
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL RemoveConnection(const CString& connection);
+        virtual BOOL RemoveConnection(const CString& connection) const;
 
         /**
         * Enumerates existing connections
         *@param resourceManager - resource manager
         *@return true on success, otherwise false
         */
-        virtual bool EnumConnections(PSS_NetResourceManager& ResourceManager);
+        virtual bool EnumConnections(PSS_NetResourceManager& ResourceManager) const;
 
         /**
         * Gets all the free connections
         *@param freeConnectionArray - free connection array to populate with results
         *@return true on success, otherwise false
         */
-        virtual bool GetFreeConnections(CStringArray& freeConnectionArray);
+        virtual bool GetFreeConnections(CStringArray& freeConnectionArray) const;
 
         /**
         * Gets the mapped or unmapped network drive. All local and floppy drives are not included
@@ -99,7 +99,7 @@ class AFX_EXT_CLASS PSS_Network
         *@note If the local device is not specified, the function makes a connection to the network resource
         *      without redirecting a local device
         */
-        virtual bool Map(const CString& unc, const CString& local = "", bool canSpecifyUserName = true);
+        virtual bool Map(const CString& unc, const CString& local = L"", bool canSpecifyUserName = true) const;
 
         /**
         * Gets the unc (Universal Naming Conversion) name matching with a local map
@@ -158,13 +158,13 @@ class AFX_EXT_CLASS PSS_Network
         * Checks if the window for multinet workgroups driver exists
         *@return TRUE if the window for multinet workgroups driver exists, otherwise FALSE
         */
-        BOOL MNetDetect();
+        BOOL MNetDetect() const;
 
         /**
-        * Checks if the window for workgroups multinet driver AND the windows for workgroups networking exist
-        *@return TRUE if the window for workgroups multinet driver AND the windows for workgroups networking exist, otherwise FALSE
+        * Checks if the window for multinet workgroups driver AND the windows for workgroups networking exist
+        *@return TRUE if the window for multinet workgroups driver AND the windows for workgroups networking exist, otherwise FALSE
         */
-        BOOL WFWDetect();
+        BOOL WFWDetect() const;
 
         /**
         * Gets the WFW Driver instance handle for MNet calls
@@ -183,13 +183,13 @@ class AFX_EXT_CLASS PSS_Network
         *@param hNetwork - network handle
         *@return the success or error code
         */
-        WORD SetNextTargetHandle(HANDLE hNetwork);
+        WORD SetNextTargetHandle(HANDLE hNetwork) const;
 
         /**
         * Enumerates any multinet networks and fill in the MNet array instance handle
         *@return TRUE if some networks were found, FALSE if no networks was found
         */
-        BOOL NetworkEnumAll();
+        BOOL NetworkEnumAll() const;
 
         /**
         * Enumerates the existing connections
@@ -197,7 +197,7 @@ class AFX_EXT_CLASS PSS_Network
         *@param resourceManager - resource manager
         *@return true on success, otherwise false
         */
-        bool EnumConnect(LPNETRESOURCE pNetResources, PSS_NetResourceManager& resourceManager);
+        bool EnumConnect(LPNETRESOURCE pNetResources, PSS_NetResourceManager& resourceManager) const;
 
         /**
         * Gets the MNets

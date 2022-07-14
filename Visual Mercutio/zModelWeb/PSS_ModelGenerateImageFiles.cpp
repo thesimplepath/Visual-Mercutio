@@ -333,7 +333,7 @@ bool PSS_ModelGenerateImageFiles::GenerateModel(PSS_ProcessGraphModelMdl* pModel
     return true;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::BuildFileNameAndPath(const CString& fileName, const CString& refFileName)
+CString PSS_ModelGenerateImageFiles::BuildFileNameAndPath(const CString& fileName, const CString& refFileName) const
 {
     if (m_pInfo->GetAbsolutePath() || fileName.IsEmpty())
         return fileName;
@@ -405,7 +405,7 @@ CString PSS_ModelGenerateImageFiles::BuildFileNameAndPath(const CString& fileNam
     return ReplaceBackSlash(completePath);
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::ReplaceBackSlash(const CString& fileName)
+CString PSS_ModelGenerateImageFiles::ReplaceBackSlash(const CString& fileName) const
 {
     CString name = fileName;
     LPTSTR  pC   = name.GetBuffer(name.GetLength() + 1);
@@ -427,7 +427,7 @@ CString PSS_ModelGenerateImageFiles::ReplaceBackSlash(const CString& fileName)
     return name;
 }
 //---------------------------------------------------------------------------
-CString PSS_ModelGenerateImageFiles::ReplaceSpecialCharInString(const CString& str)
+CString PSS_ModelGenerateImageFiles::ReplaceSpecialCharInString(const CString& str) const
 {
     CString s  = str;
     LPTSTR  pC = s.GetBuffer(s.GetLength() + 1);

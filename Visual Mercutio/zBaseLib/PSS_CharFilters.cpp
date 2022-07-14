@@ -79,15 +79,12 @@ CString PSS_CharFilters::CheckSpaces(const CString& text)
         switch (c)
         {
             case ' ':
-            {
                 if (firstCharReached)
                     doInsertSpace = TRUE;
 
                 break;
-            }
 
             default:
-            {
                 if (doInsertSpace)
                 {
                     result        += _T(" ");
@@ -96,7 +93,7 @@ CString PSS_CharFilters::CheckSpaces(const CString& text)
 
                 result           += c;
                 firstCharReached  = TRUE;
-            }
+                break;
         }
     }
 

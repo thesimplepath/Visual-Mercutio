@@ -429,7 +429,7 @@ HTREEITEM PSS_DirTreeCtrl::InsertPathItem(HTREEITEM      hParent,
 
     CString formattedText = FormatName(text);
 
-    TVINSERTSTRUCT insertStruct;
+    TVINSERTSTRUCT insertStruct   = {0};
     insertStruct.hParent          = hParent;
     insertStruct.hInsertAfter     = TVI_LAST;
     insertStruct.itemex.mask      = TVIF_IMAGE | TVIF_TEXT | TVIF_CHILDREN | TVIF_SELECTEDIMAGE | TVIF_PARAM;
@@ -458,7 +458,7 @@ HTREEITEM PSS_DirTreeCtrl::InsertFileItem(HTREEITEM      hParent,
 
     CString formattedText = FormatName(text);
 
-    TVINSERTSTRUCT insertStruct;
+    TVINSERTSTRUCT insertStruct = {0};
     insertStruct.hParent        = hParent;
     insertStruct.hInsertAfter   = TVI_LAST;
     insertStruct.itemex.mask    = TVIF_IMAGE | TVIF_TEXT | TVIF_SELECTEDIMAGE | TVIF_PARAM;

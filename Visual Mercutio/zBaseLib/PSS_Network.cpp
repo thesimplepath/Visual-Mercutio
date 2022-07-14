@@ -74,10 +74,10 @@ const PSS_Network& PSS_Network::operator = (const PSS_Network& other)
     THROW("Copy operator isn't allowed for this class");
 }
 //---------------------------------------------------------------------------
-bool PSS_Network::OpenConnection(const CString& path, HWND hWndOwner, bool temporarily, bool interactive)
+bool PSS_Network::OpenConnection(const CString& path, HWND hWndOwner, bool temporarily, bool interactive) const
 {
-    CString     netPath = path;
-    NETRESOURCE netResource;
+    CString     netPath     = path;
+    NETRESOURCE netResource = {0};
 
     // initialize the network resource structure
     netResource.dwScope       = RESOURCE_GLOBALNET;
@@ -111,23 +111,22 @@ bool PSS_Network::OpenConnection(const CString& path, HWND hWndOwner, bool tempo
     return (result == WN_SUCCESS);
 }
 //---------------------------------------------------------------------------
-BOOL PSS_Network::RemoveConnection(const CString& connection)
+BOOL PSS_Network::RemoveConnection(const CString& connection) const
 {
-    CString conName = connection;
+    CString     connName = connection;
+    const DWORD result   = ::WNetCancelConnection2(connName.GetBuffer(connName.GetLength()), CONNECT_UPDATE_PROFILE, TRUE);
 
-    const DWORD result = WNetCancelConnection2(conName.GetBuffer(conName.GetLength()), CONNECT_UPDATE_PROFILE, TRUE);
-
-    conName.ReleaseBuffer();
+    connName.ReleaseBuffer();
 
     return (result == WN_SUCCESS);
 }
 //---------------------------------------------------------------------------
-bool PSS_Network::EnumConnections(PSS_NetResourceManager& resourceManager)
+bool PSS_Network::EnumConnections(PSS_NetResourceManager& resourceManager) const
 {
     return EnumConnect(NULL, resourceManager);
 }
 //---------------------------------------------------------------------------
-bool PSS_Network::GetFreeConnections(CStringArray& freeConnectionArray)
+bool PSS_Network::GetFreeConnections(CStringArray& freeConnectionArray) const
 {
     PSS_NetResourceManager resourceManager;
 
@@ -182,11 +181,11 @@ bool PSS_Network::GetNetworkDrives(CStringArray& driveArray) const
     return (driveArray.GetSize() > 0);
 }
 //---------------------------------------------------------------------------
-bool PSS_Network::Map(const CString& unc, const CString& local, bool canSpecifyUserName)
+bool PSS_Network::Map(const CString& unc, const CString& local, bool canSpecifyUserName) const
 {
-    CString     localName = local;
-    CString     uncName = unc;
-    NETRESOURCE netResource;
+    CString     uncName     = unc;
+    CString     localName   = local;
+    NETRESOURCE netResource = {0};
 
     // initialize the network resource structure
     netResource.dwType       = RESOURCETYPE_DISK;
@@ -219,9 +218,9 @@ bool PSS_Network::Map(const CString& unc, const CString& local, bool canSpecifyU
 //---------------------------------------------------------------------------
 CString PSS_Network::GetMap(const CString& local) const
 {
-    CString localName = local;
     char    buffer[500];
-    DWORD   size = 500;
+    DWORD   size      = 500;
+    CString localName = local;
 
     const DWORD result = ::WNetGetConnection(localName.GetBuffer(localName.GetLength()), buffer, &size);
 
@@ -235,7 +234,7 @@ CString PSS_Network::GetMap(const CString& local) const
 //---------------------------------------------------------------------------
 CString PSS_Network::GetUNC(const CString& value) const
 {
-    TCHAR                buffer[1000];
+    TCHAR                buffer[1000]    = {0};
     DWORD                bufferSize      = 1000;
     REMOTE_NAME_INFO*    pRemoteNameInfo = (REMOTE_NAME_INFO*)&buffer;
     UNIVERSAL_NAME_INFO* pUniNameInfo    = (UNIVERSAL_NAME_INFO*)&buffer;
@@ -276,7 +275,7 @@ CString PSS_Network::GetNetworkErrorMessage() const
 
             #ifndef _WIN32
                 // check if this is a driver specific error, then use Winnet.h
-                retCode = WNetGetErrorText(errorNb, error.GetBufferSetLength(bufferSize), &bufferSize);
+                retCode = ::WNetGetErrorText(errorNb, error.GetBufferSetLength(bufferSize), &bufferSize);
             #else
                 char nameBuffer[200];
 
@@ -346,7 +345,7 @@ CString PSS_Network::GetUserName() const
         HANDLE      hNetwork   = 0;
         const INT   bufferSize = sizeof(userName);
 
-        // deal with windows for workgroups multinet
+        // deal with windows for multinet workgroups
         if (::MNetDetect())
         {
             // write message to the window debugger
@@ -404,7 +403,7 @@ CString PSS_Network::GetUserName() const
             }
         }
 
-        switch (WNetGetUser(LPSTR(userName), LPINT(&bufferSize)))
+        switch (::WNetGetUser(LPSTR(userName), LPINT(&bufferSize)))
         {
             case WN_SUCCESS:       retValue = TRUE; break;
             case WN_NOT_SUPPORTED:
@@ -430,7 +429,7 @@ CString PSS_Network::GetUserName() const
     return (retValue ? userName : _T(""));
 }
 //---------------------------------------------------------------------------
-BOOL PSS_Network::MNetDetect()
+BOOL PSS_Network::MNetDetect() const
 {
     BOOL retValue = FALSE;
 
@@ -459,7 +458,7 @@ BOOL PSS_Network::MNetDetect()
     return retValue;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_Network::WFWDetect()
+BOOL PSS_Network::WFWDetect() const
 {
     BOOL retValue = FALSE;
 
@@ -523,7 +522,7 @@ HANDLE PSS_Network::GetLastTargetHandle() const
     return hLast;
 }
 //---------------------------------------------------------------------------
-WORD PSS_Network::SetNextTargetHandle(HANDLE hNetwork)
+WORD PSS_Network::SetNextTargetHandle(HANDLE hNetwork) const
 {
     LPMNETSETNEXTTARGET pMNetSetNextTarget;
     WORD                retValue = WN_BAD_VALUE;
@@ -543,18 +542,18 @@ WORD PSS_Network::SetNextTargetHandle(HANDLE hNetwork)
     return retValue;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_Network::NetworkEnumAll()
+BOOL PSS_Network::NetworkEnumAll() const
 {
     LPMNETNETWORKENUM pMNetNetworkEnum;
-    HANDLE            hNetwork = 0;
+    HANDLE            hNetwork   = 0;
     LPMNETGETNETINFO  pMNetGetNetInfo;
-    WORD              netInfo = 0;
+    WORD              netInfo    = 0;
     char              button[80] = _T("empty");
     char              buffer[100];
-    int               cbButton = 80;
-    HANDLE            hInstance = NULL;
+    int               cbButton   = 80;
+    HANDLE            hInstance  = NULL;
     WORD              errInfo;
-    BOOL              result = FALSE;
+    BOOL              result     = FALSE;
     int               i;
 
     // initialize the MNet array
@@ -691,7 +690,7 @@ BOOL PSS_Network::NetworkEnumAll()
     return result;
 }
 //---------------------------------------------------------------------------
-bool PSS_Network::EnumConnect(LPNETRESOURCE pNetResources, PSS_NetResourceManager& resourceManager)
+bool PSS_Network::EnumConnect(LPNETRESOURCE pNetResources, PSS_NetResourceManager& resourceManager) const
 {
     HANDLE hEnum;
 
@@ -715,7 +714,7 @@ bool PSS_Network::EnumConnect(LPNETRESOURCE pNetResources, PSS_NetResourceManage
         if (!pNRLocal)
             return false;
 
-        DWORD resultEnum;
+        DWORD resultEnum = 0;
 
         do
         {
@@ -723,7 +722,7 @@ bool PSS_Network::EnumConnect(LPNETRESOURCE pNetResources, PSS_NetResourceManage
             ZeroMemory(pNRLocal, buffer);
 
             // call the WNetEnumResource() function to continue the enumeration
-            resultEnum = WNetEnumResource(hEnum, &entries, pNRLocal, &buffer);
+            resultEnum = ::WNetEnumResource(hEnum, &entries, pNRLocal, &buffer);
 
            // if the call succeeds, iterate through the structures
             if (resultEnum == NO_ERROR)

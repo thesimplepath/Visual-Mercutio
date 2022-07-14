@@ -177,6 +177,7 @@ CString PSS_Date::GetFormattedDate(const CString& format) const
         return CTime::Format(LPCTSTR(format));
     #endif
 }
+//---------------------------------------------------------------------------
 CString PSS_Date::GetFormattedDate(UINT formatID) const
 {
     if (IsEmpty())

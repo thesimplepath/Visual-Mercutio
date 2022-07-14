@@ -874,15 +874,15 @@ class PSS_MainApp : public PSS_SingleInstanceApplication,
 
         /**
         * Called when file name should be prompted
-        *@param fileName - the file name to prompt
-        *@param initialDir - the inital directory
+        *@param[in, out] fileName - the file name to prompt, the prompted file name on function ends
+        *@param initialDir - the initial directory
         *@param titleID - the title resource identifier
         *@param flags - the flags
         *@param openFileDialog - if TRUE, the file dialog will be opened
         *@param pTemplate - the template, if NULL all document templates will be considered
         *@return TRUE on success, otherwise FALSE
         */
-        virtual BOOL DoPromptFileName(const CString& fileName,
+        virtual BOOL DoPromptFileName(CString&       fileName,
                                       const CString& initialDir,
                                       UINT           titleID,
                                       DWORD          flags,
@@ -891,7 +891,7 @@ class PSS_MainApp : public PSS_SingleInstanceApplication,
 
         /**
         * Appends the filter suffix
-        *@param[in, out] filter - the filter to append, the appened filer on function end
+        *@param[in, out] filter - the filter to append, the appended filter on function end
         *@param ofn - the open file name
         *@param pTemplate - the template
         *@param pDefaultExt - the default extension
@@ -910,7 +910,7 @@ class PSS_MainApp : public PSS_SingleInstanceApplication,
 
         /**
         * Called when an additional template not covered by CDocTemplate was registered
-        *@return true if the tamplate is allowed to be registered, otherwise false
+        *@return true if the template is allowed to be registered, otherwise false
         */
         virtual bool OnRegisterAdditionalTemplate();
 

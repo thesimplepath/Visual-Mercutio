@@ -84,7 +84,7 @@ CString PSS_Event::GetEventIDStr() const
     return text;
 }
 //---------------------------------------------------------------------------
-BOOL PSS_Event::ParseDateTime(COleDateTime& dateTime, const CString& value)
+BOOL PSS_Event::ParseDateTime(COleDateTime& dateTime, const CString& value) const
 {
     // date to parse are formatted as follow: 01.01.1999 - 23:10:30
     CString dateToParse = value;

@@ -50,7 +50,7 @@ CString PSS_Tokenizer::GetNextToken()
         return _T("");
     }
 
-    // locate the separator char 
+    // locate the separator char
     m_pNext = std::strchr(m_pCurrent, m_SeparatorChar);
 
     if (!m_pNext)

@@ -1667,7 +1667,7 @@ BOOL PSS_MainApp::LoadAllUsers()
     return userLoader.LoadAllUsers();
 }
 //---------------------------------------------------------------------------
-BOOL PSS_MainApp::DoPromptFileName(const CString& fileName,
+BOOL PSS_MainApp::DoPromptFileName(CString&       fileName,
                                    const CString& initialDir,
                                    UINT           titleID,
                                    DWORD          flags,
@@ -1724,11 +1724,9 @@ BOOL PSS_MainApp::DoPromptFileName(const CString& fileName,
     dlgFile.m_ofn.hwndOwner   = pWnd->GetSafeHwnd();
     dlgFile.m_ofn.lpstrTitle  = title;
 
-    CString initialDirName = fileName;
-
     // set the initial directory
     dlgFile.m_ofn.nMaxFile        = _MAX_PATH;
-    dlgFile.m_ofn.lpstrFile       = initialDirName.GetBuffer(_MAX_PATH);
+    dlgFile.m_ofn.lpstrFile       = fileName.GetBuffer(_MAX_PATH);
     dlgFile.m_ofn.lpstrInitialDir = initialDir;
 
     const BOOL result = dlgFile.DoModal() == IDOK ? TRUE : FALSE;
@@ -1738,7 +1736,7 @@ BOOL PSS_MainApp::DoPromptFileName(const CString& fileName,
             DWORD error = ::CommDlgExtendedError();
     #endif
 
-    initialDirName.ReleaseBuffer();
+    fileName.ReleaseBuffer();
 
     return result;
 }

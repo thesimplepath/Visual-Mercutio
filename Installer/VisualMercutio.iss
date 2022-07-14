@@ -11,6 +11,9 @@
 #define KeyAppName        "VisualMercutio"
 #define KeyAppDescription "Processes within everyone's reach."
 
+; comment this line to allow the user to perform the file associations
+#define DO_NOT_SELECT_FILE_ASSOC
+
 [Setup]
 ;IMPORTANT NOTE don't add a space between the = and the value, otherwise this may create side effects while the value is used later
 AppVersion              ="{#AppVersion}"
@@ -61,6 +64,7 @@ SelectExtAssocCaption =Make {#AppName} the default application for the following
 AllCaption            =All extensions
 KlfCaption            =Mercutio Conceptor Project (.klf)
 MlfCaption            =Mercutio Conceptor Model (.mlf)
+RlfCaption            =Mercutio Conceptor Report (.rlf)
 LaunchProgram         =Launch {#AppName}
 AppIsInstalled        ={#AppName} is installed!
 
@@ -78,12 +82,14 @@ begin
   WizardForm.WelcomeLabel1.Caption := ExpandConstant('{cm:WelcomeTitle}');
   WizardForm.WelcomeLabel2.Caption := ExpandConstant('{cm:WelcomeDescLine}');
 
-  // change the task list main panel position and size
-  WizardForm.TasksList.Top              := 0;
-  WizardForm.TasksList.Height           := ScaleY(220);
-  WizardForm.TasksList.Offset           := ScaleX(10);
-  WizardForm.TasksList.MinItemHeight    := ScaleY(10);
-  WizardForm.SelectTasksLabel.Visible   := False;
+  #ifndef DO_NOT_SELECT_FILE_ASSOC
+    // change the task list main panel position and size
+    WizardForm.TasksList.Top              := 0;
+    WizardForm.TasksList.Height           := ScaleY(220);
+    WizardForm.TasksList.Offset           := ScaleX(10);
+    WizardForm.TasksList.MinItemHeight    := ScaleY(10);
+    WizardForm.SelectTasksLabel.Visible   := False;
+  #endif
 
   // change the title on the finished page, hide the main text
   WizardForm.FinishedHeadingLabel.Caption := ExpandConstant('{cm:AppIsInstalled}');
@@ -104,9 +110,12 @@ begin
 end;
 
 [Tasks]
-Name: "AssociateAll";              Description: {cm:AllCaption}; GroupDescription: {cm:SelectExtAssocCaption}
-Name: "AssociateAll\AssociateKlf"; Description: {cm:KlfCaption}; GroupDescription: {cm:SelectExtAssocCaption}
-Name: "AssociateAll\AssociateMlf"; Description: {cm:MlfCaption}; GroupDescription: {cm:SelectExtAssocCaption}
+#ifndef DO_NOT_SELECT_FILE_ASSOC
+  Name: "AssociateAll";              Description: {cm:AllCaption}; GroupDescription: {cm:SelectExtAssocCaption}
+  Name: "AssociateAll\AssociateKlf"; Description: {cm:KlfCaption}; GroupDescription: {cm:SelectExtAssocCaption}
+  Name: "AssociateAll\AssociateMlf"; Description: {cm:MlfCaption}; GroupDescription: {cm:SelectExtAssocCaption}
+  Name: "AssociateAll\AssociateRlf"; Description: {cm:RlfCaption}; GroupDescription: {cm:SelectExtAssocCaption}
+#endif
 
 [Dirs]
 
@@ -191,38 +200,48 @@ Name: "{commondesktop}\{#AppName}"; Filename: "{commonpf32}\{#AppName}\{#MainApp
 ;Name: "{group}\Uninstall {#AppName}"; Filename: "{uninstallexe}";
 
 [Registry]
-; create the application capability key. The key will be located at: Computer\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\UrsaMinor (for 64 bit OS). NOTE HKA	equals HKLM in administrative install mode, HKCU otherwise
-Root: HKA; Subkey: "Software\{#KeyCompanyName}";                                                                                                                                                     Flags: uninsdeletekeyifempty
-Root: HKA; Subkey: "Software\{#KeyCompanyName}\{#KeyAppName}";                                                                                                                                       Flags: uninsdeletekeyifempty
-Root: HKA; Subkey: "Software\{#KeyCompanyName}\{#KeyAppName}\Capability"; ValueType: string; ValueName: "ApplicationDescription"; ValueData: "{#KeyAppDescription}";                                 Flags: uninsdeletevalue
-Root: HKA; Subkey: "Software\{#KeyCompanyName}\{#KeyAppName}\Capability"; ValueType: string; ValueName: "ApplicationName";        ValueData: "{#AppName}";                                           Flags: uninsdeletevalue
+#ifndef DO_NOT_SELECT_FILE_ASSOC
+  ; create the application capability key. The key will be located at: Computer\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\UrsaMinor (for 64 bit OS). NOTE HKA	equals HKLM in administrative install mode, HKCU otherwise
+  Root: HKA; Subkey: "Software\{#KeyCompanyName}";                                                                                                                                                     Flags: uninsdeletekeyifempty
+  Root: HKA; Subkey: "Software\{#KeyCompanyName}\{#KeyAppName}";                                                                                                                                       Flags: uninsdeletekeyifempty
+  Root: HKA; Subkey: "Software\{#KeyCompanyName}\{#KeyAppName}\Capability"; ValueType: string; ValueName: "ApplicationDescription"; ValueData: "{#KeyAppDescription}";                                 Flags: uninsdeletevalue
+  Root: HKA; Subkey: "Software\{#KeyCompanyName}\{#KeyAppName}\Capability"; ValueType: string; ValueName: "ApplicationName";        ValueData: "{#AppName}";                                           Flags: uninsdeletevalue
 
-; add capability key to registered applications list. The key will be located at: Computer\HKEY_LOCAL_MACHINE\SOFTWARE\RegisteredApplications
-Root: HKA; Subkey: "Software\RegisteredApplications";                     ValueType: string; ValueName: "{#AppName}";             ValueData: "Software\{#KeyCompanyName}\{#KeyAppName}\Capability";  Flags: uninsdeletevalue
+  ; add capability key to registered applications list. The key will be located at: Computer\HKEY_LOCAL_MACHINE\SOFTWARE\RegisteredApplications
+  Root: HKA; Subkey: "Software\RegisteredApplications";                     ValueType: string; ValueName: "{#AppName}";             ValueData: "Software\{#KeyCompanyName}\{#KeyAppName}\Capability";  Flags: uninsdeletevalue
 
-; declare the verb to execute when an "Open with" command is sent to the application. The key will be located at: Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Classes\VisualMercutio. NOTE in the "Software\Classes\{#KeyAppName}" key,
-; the ValueData value will replace the file type info shown in Windows Explorer. For that reason this value remains empty to preserve the original file type
-Root: HKA; Subkey: "Software\Classes\{#KeyAppName}";
-Root: HKA; Subkey: "Software\Classes\{#KeyAppName}";                      ValueType: string; ValueName: "";                       ValueData: "";                                                     Flags: uninsdeletekey
-Root: HKA; Subkey: "Software\Classes\{#KeyAppName}\DefaultIcon";
-Root: HKA; Subkey: "Software\Classes\{#KeyAppName}\DefaultIcon";          ValueType: string; ValueName: "";                       ValueData: "{commonpf32}\{#AppName}\{#MainAppFileName},0"
-Root: HKA; Subkey: "Software\Classes\{#KeyAppName}\shell";
-Root: HKA; Subkey: "Software\Classes\{#KeyAppName}\shell\open";
-Root: HKA; Subkey: "Software\Classes\{#KeyAppName}\shell\open\command";
-Root: HKA; Subkey: "Software\Classes\{#KeyAppName}\shell\open\command";   ValueType: string; ValueName: "";                       ValueData: """{commonpf32}\{#AppName}\{#MainAppFileName}"" ""%1"""
+  ; declare the verb to execute when an "Open with" command is sent to the application. The key will be located at: Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Classes\VisualMercutio. NOTE in the "Software\Classes\{#KeyAppName}" key,
+  ; the ValueData value will replace the file type info shown in Windows Explorer. For that reason this value remains empty to preserve the original file type
+  Root: HKA; Subkey: "Software\Classes\{#KeyAppName}";
+  Root: HKA; Subkey: "Software\Classes\{#KeyAppName}";                      ValueType: string; ValueName: "";                       ValueData: "";                                                     Flags: uninsdeletekey
+  Root: HKA; Subkey: "Software\Classes\{#KeyAppName}\DefaultIcon";
+  Root: HKA; Subkey: "Software\Classes\{#KeyAppName}\DefaultIcon";          ValueType: string; ValueName: "";                       ValueData: "{commonpf32}\{#AppName}\{#MainAppFileName},0"
+  Root: HKA; Subkey: "Software\Classes\{#KeyAppName}\shell";
+  Root: HKA; Subkey: "Software\Classes\{#KeyAppName}\shell\open";
+  Root: HKA; Subkey: "Software\Classes\{#KeyAppName}\shell\open\command";
+  Root: HKA; Subkey: "Software\Classes\{#KeyAppName}\shell\open\command";   ValueType: string; ValueName: "";                       ValueData: """{commonpf32}\{#AppName}\{#MainAppFileName}"" ""%1"""
 
-; register .klf extension (Computer\HKEY_CLASSES_ROOT\.klf)
-Root: HKA; Subkey: "Software\Classes\.klf";
-Root: HKA; Subkey: "Software\Classes\.klf\OpenWithProgids";
-Root: HKA; Subkey: "Software\Classes\.klf\OpenWithProgids";                           ValueType: string; ValueName: "{#KeyAppName}"; ValueData: ""; Flags: uninsdeletevalue; Tasks: "AssociateAll\AssociateKlf"
-Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}";
-Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}\SupportedTypes";
-Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}\SupportedTypes"; ValueType: string; ValueName: ".klf";          ValueData: "";                          Tasks: "AssociateAll\AssociateKlf"
+  ; register .klf extension (Computer\HKEY_CLASSES_ROOT\.klf)
+  Root: HKA; Subkey: "Software\Classes\.klf";
+  Root: HKA; Subkey: "Software\Classes\.klf\OpenWithProgids";
+  Root: HKA; Subkey: "Software\Classes\.klf\OpenWithProgids";                           ValueType: string; ValueName: "{#KeyAppName}"; ValueData: ""; Flags: uninsdeletevalue; Tasks: "AssociateAll\AssociateKlf"
+  Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}";
+  Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}\SupportedTypes";
+  Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}\SupportedTypes"; ValueType: string; ValueName: ".klf";          ValueData: "";                          Tasks: "AssociateAll\AssociateKlf"
 
-; register .mlf extension (Computer\HKEY_CLASSES_ROOT\.mlf)
-Root: HKA; Subkey: "Software\Classes\.mlf";
-Root: HKA; Subkey: "Software\Classes\.mlf\OpenWithProgids";
-Root: HKA; Subkey: "Software\Classes\.mlf\OpenWithProgids";                           ValueType: string; ValueName: "{#KeyAppName}"; ValueData: ""; Flags: uninsdeletevalue; Tasks: "AssociateAll\AssociateMlf"
-Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}";
-Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}\SupportedTypes";
-Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}\SupportedTypes"; ValueType: string; ValueName: ".mlf";          ValueData: "";                          Tasks: "AssociateAll\AssociateMlf"
+  ; register .mlf extension (Computer\HKEY_CLASSES_ROOT\.mlf)
+  Root: HKA; Subkey: "Software\Classes\.mlf";
+  Root: HKA; Subkey: "Software\Classes\.mlf\OpenWithProgids";
+  Root: HKA; Subkey: "Software\Classes\.mlf\OpenWithProgids";                           ValueType: string; ValueName: "{#KeyAppName}"; ValueData: ""; Flags: uninsdeletevalue; Tasks: "AssociateAll\AssociateMlf"
+  Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}";
+  Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}\SupportedTypes";
+  Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}\SupportedTypes"; ValueType: string; ValueName: ".mlf";          ValueData: "";                          Tasks: "AssociateAll\AssociateMlf"
+
+  ; register .rlf extension (Computer\HKEY_CLASSES_ROOT\.rlf)
+  Root: HKA; Subkey: "Software\Classes\.rlf";
+  Root: HKA; Subkey: "Software\Classes\.rlf\OpenWithProgids";
+  Root: HKA; Subkey: "Software\Classes\.rlf\OpenWithProgids";                           ValueType: string; ValueName: "{#KeyAppName}"; ValueData: ""; Flags: uninsdeletevalue; Tasks: "AssociateAll\AssociateRlf"
+  Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}";
+  Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}\SupportedTypes";
+  Root: HKA; Subkey: "Software\Classes\Applications\{#MainAppFileName}\SupportedTypes"; ValueType: string; ValueName: ".rlf";          ValueData: "";                          Tasks: "AssociateAll\AssociateRlf"
+#endif

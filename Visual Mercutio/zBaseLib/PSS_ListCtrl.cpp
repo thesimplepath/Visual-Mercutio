@@ -181,8 +181,8 @@ BOOL PSS_ListCtrl::BuildColumns(int cols, int* pWidth, int* pColString)
     if (!pColString)
         return FALSE;
 
-    LV_COLUMN lvc;
-    lvc.mask = LVCF_FMT | LVCF_WIDTH | LVCF_TEXT | LVCF_SUBITEM;
+    LV_COLUMN lvc = {0};
+    lvc.mask      = LVCF_FMT | LVCF_WIDTH | LVCF_TEXT | LVCF_SUBITEM;
 
     CString str;
 
@@ -211,7 +211,7 @@ void PSS_ListCtrl::AutoSizeColumn(int column)
 
     CListCtrl::SetColumnWidth(column, LVSCW_AUTOSIZE_USEHEADER);
     const int cw2 = GetColumnWidth(column);
-   
+
     int cw = __max(MINCOLWIDTH, __max(cw1, cw2));
 
     if (cw > MAXCOLWIDTH)

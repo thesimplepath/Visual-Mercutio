@@ -171,9 +171,9 @@ void PSS_DatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
                 COleCurrency c(varValue);
 
                 // i.e. 1.00
-                CString s = c.Format();
-                ::strcpy_s(value, ::_tcslen(value), s.GetBuffer(s.GetLength()));
-                s.ReleaseBuffer();
+                CString str = c.Format();
+                ::strcpy_s(value, ::_tcslen(value), str.GetBuffer(str.GetLength()));
+                str.ReleaseBuffer();
                 break;
             }
 
@@ -182,9 +182,9 @@ void PSS_DatabaseListCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
                 COleDateTime t(variant->date);
 
                 // day of week, month, day, year
-                CString s = t.Format(_T("%B %d, %Y"));
-                ::strcpy_s(value, ::_tcslen(value), s.GetBuffer(s.GetLength()));
-                s.ReleaseBuffer();
+                CString str = t.Format(_T("%B %d, %Y"));
+                ::strcpy_s(value, ::_tcslen(value), str.GetBuffer(str.GetLength()));
+                str.ReleaseBuffer();
                 break;
             }
 

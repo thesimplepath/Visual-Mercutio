@@ -130,9 +130,9 @@ class AFX_EXT_CLASS PSS_EncryptedLine : public CObject
 
         /**
         * Encrypts an entity
-        *@param line - line containing the entity to encrypt
+        *@param[in, out] line - line containing the entity to encrypt, encrypted line on function ends
         */
-        void EncryptEntity(const CString& line);
+        void EncryptEntity(CString& line) const;
 
         /**
         * Generates a random line
@@ -143,7 +143,7 @@ class AFX_EXT_CLASS PSS_EncryptedLine : public CObject
 };
 
 //---------------------------------------------------------------------------
-// PSS_EncryptedLine 
+// PSS_EncryptedLine
 //---------------------------------------------------------------------------
 const CString PSS_EncryptedLine::GetEntity() const
 {

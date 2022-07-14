@@ -18,7 +18,7 @@ const int g_EncryptedItemCount  = 25;  // multiply by 4 must give g_EncryptedLin
 //---------------------------------------------------------------------------
 IMPLEMENT_DYNCREATE(PSS_EncryptedLine, CObject);
 //---------------------------------------------------------------------------
-// PSS_EncryptedLine 
+// PSS_EncryptedLine
 //---------------------------------------------------------------------------
 PSS_EncryptedLine::PSS_EncryptedLine() :
     CObject()
@@ -48,7 +48,7 @@ CString PSS_EncryptedLine::GenerateRandomLine()
 
     // encrypt the entity
     EncryptEntity(m_Entity);
-    
+
     return m_Entity;
 }
 //---------------------------------------------------------------------------
@@ -116,7 +116,7 @@ CString PSS_EncryptedLine::GenerateLine(int value)
 {
     const int leftSize = (g_EncryptedLineLength - 10) / 2;
     m_Entity           = GenerateRandomLine(leftSize);
-  
+
     char buffer[30];
 
     // add the counter
@@ -210,7 +210,7 @@ CTime PSS_EncryptedLine::GetTime()
     return CTime(std::atoi(year), std::atoi(month), std::atoi(day), 0, 0, 0);
 }
 //---------------------------------------------------------------------------
-void PSS_EncryptedLine::EncryptEntity(const CString& line)
+void PSS_EncryptedLine::EncryptEntity(CString& line) const
 {
     CString encryptedLine = line;
 
